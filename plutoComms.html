@@ -15,7 +15,9 @@
         <script type="text/javascript" src="_static/language_data.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="utils module" href="utils.html" />
+    <link rel="prev" title="code" href="modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,11 +35,15 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">plutoComms module</a></li>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">code</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">plutoComms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
 </ul>
-</div>
+</li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -52,6 +58,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">code</a></li>
       <li class="breadcrumb-item active">plutoComms module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/plutoComms.rst.txt" rel="nofollow"> View page source</a>
@@ -69,29 +76,29 @@
 <em class="property">class </em><code class="descclassname">plutoComms.</code><code class="descname">COMMS</code><span class="sig-paren">(</span><em>IP='192.168.4.1'</em>, <em>Port=23</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is the class for all communication with the pluto drone.</p>
-<p>It has two threads running in parallel: <br>
+<p>It has two threads running in parallel:<br>
 1) The write Thread: which sends data to the drone based on the values of parameter to be set and requests to be made. <br>
 2) The read Thread: which reads data from the drone and updates the parameters received based on the requests sent.</p>
 <dl class="docutils">
 <dt>Attribute:</dt>
-<dd>TCP_IP: IP address of drone. <br>
-Port: Port of the drone. <br>
-debug: a flag to enable prints in code for debugging. <br>
-mySocket: refers to the instance of socket connected to the drone at the specified IP and Port. <br>
-waitTime: variable to control sleep time after every command, so as to ensure that it is sent to the drone in the write thread. <br>
-inLoopSleepTime: variable to control sleep time in write thread, thus controlling publishing frequency. <br>
-outLoopSleepTime: variable to control sleep time in read thread, thus controlling subscribing frequency. <br>
-writeLoop: variable to control writing loop i.e. if we want to write data or not. <br>
-readLoop: variable to control reading loop i.e. if we want to read data or not. <br>
-outServices: Dictionary of all the out packets we request for with their type of payload values. <br>
-requestMSPPackets: List of MSP requests for Out Packets. <br>
-paramSet: Dictionary of parameter to be set based on their values through IN Packets. <br>
-paramReceived: Dictionary of parameters received from the OUT Packets.</dd>
+<dd>TCP_IP: IP address of drone<br>
+Port: Port of the drone<br>
+debug: a flag to enable prints in code for debugging<br>
+mySocket: refers to the instance of socket connected to the drone at the specified IP and Port<br>
+waitTime: variable to control sleep time after every command, so as to ensure that it is sent to the drone in the write thread<br>
+inLoopSleepTime: variable to control sleep time in write thread, thus controlling publishing frequency<br>
+outLoopSleepTime: variable to control sleep time in read thread, thus controlling subscribing frequency<br>
+writeLoop: variable to control writing loop i,e, if we want to write data or not<br>
+readLoop: variable to control reading loop i.e. if we want to read data or not<br>
+outServices: Dictionary of all the out packets we request for with their type of payload values<br>
+requestMSPPackets: List of MSP requests for Out Packets <br>
+paramSet: Dictionary of parameter to be set based on their values through IN Packets<br>
+paramReceived: Dictionary of parameters received from the OUT Packets</dd>
 </dl>
 <dl class="method">
 <dt id="plutoComms.COMMS.arm">
 <code class="descname">arm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS.arm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Member Function to Arm the drone. </p>
+<dd><p>Member Function to Arm the drone.</p>
 </dd></dl>
 
 <dl class="method">
@@ -121,7 +128,7 @@ paramReceived: Dictionary of parameters received from the OUT Packets.</dd>
 <dl class="method">
 <dt id="plutoComms.COMMS.disArm">
 <code class="descname">disArm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS.disArm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Member Function to Disarm the drone.</p>
+<dd><p>Member Function to disarm the drone.</p>
 </dd></dl>
 
 <dl class="method">
@@ -183,7 +190,7 @@ paramReceived: Dictionary of parameters received from the OUT Packets.</dd>
 <code class="descname">processBuffer</code><span class="sig-paren">(</span><em>buff</em>, <em>funDebug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS.processBuffer" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function processes the current buffer and return the list of decoded values as out list, 
 the OUT Packet payload corresponding to which the values are and the remaining buffer.
-Returns empty out list and 0 as payload if buffer does not contain the full message</p>
+Returns empty out list and 0 as payload if buffer does not contain the full message.</p>
 <p>In case when garbage is received slice the buffer to the start of the next message by searching for header.</p>
 </dd></dl>
 
@@ -194,7 +201,7 @@ Returns empty out list and 0 as payload if buffer does not contain the full mess
 All the data sent by the drone is received in this function.</p>
 <p>In the loop we wait for 2 seconds max, if we do not receive any data on the socket then we break out of the loop.
 While receiving we append that message at the end of the currently existing buffer.
-After this the current buffer is again and again processed and the parameter received are updated until the buffer can no longer be processed.</p>
+After this the current buffer is again and again processed and the parameter received are updated untill the buffer can no longer be processed.</p>
 </dd></dl>
 
 <dl class="method">
@@ -206,7 +213,7 @@ After this the current buffer is again and again processed and the parameter rec
 <dl class="method">
 <dt id="plutoComms.COMMS.reset">
 <code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Member Functioon to set all parameters to set to default values.</p>
+<dd><p>Member Function to set all parameters to set to default values.</p>
 </dd></dl>
 
 <dl class="method">
@@ -224,7 +231,7 @@ After this the current buffer is again and again processed and the parameter rec
 <dl class="method">
 <dt id="plutoComms.COMMS.takeOff">
 <code class="descname">takeOff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS.takeOff" title="Permalink to this definition">¶</a></dt>
-<dd><p>Member Function to set command as takeoff.</p>
+<dd><p>Member Function to set command as takeOff.</p>
 </dd></dl>
 
 <dl class="method">
@@ -236,9 +243,9 @@ After this the current buffer is again and again processed and the parameter rec
 <dl class="method">
 <dt id="plutoComms.COMMS.updateParams">
 <code class="descname">updateParams</code><span class="sig-paren">(</span><em>out</em>, <em>idx</em><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS.updateParams" title="Permalink to this definition">¶</a></dt>
-<dd><p>Member Function to update the received parameters. <br>
-:param out: Decoded Values <br>
-:type out: List <br>
+<dd><p>Member Function to update the received parameters.<br>
+:param out: Decoded Values<br>
+:type out: List<br>
 :param idx: value of type of payload <br>
 :type idx: int</p>
 </dd></dl>
@@ -247,9 +254,9 @@ After this the current buffer is again and again processed and the parameter rec
 <dt id="plutoComms.COMMS.write">
 <code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.COMMS.write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Member Function which is the target of the Writing Thread.
-ALl writing to drone takes place in this function untill we set sendData to False.</p>
-<p>Before entering the loop we set the ROll and Pitch Trim, as it is to be done only once in the starting.
-In the loop we keep sending the SET_RAW_RC commands, we check if SET_COMMAND is not 0 this we send that also
+All writing to drone takes place in this function untill we set sendData to False.</p>
+<p>Before entering the loop we set the Roll and Pitch Trim, as it is to be done only once in the starting
+In the loop we keep sending the SET_RAW_RC commands, we check if SET_COMMAND is not 0 then we send that also.
 In every iteration, we also request for all the messages we want as OUT Packets.</p>
 </dd></dl>
 
@@ -259,12 +266,12 @@ In every iteration, we also request for all the messages we want as OUT Packets.
 <dt id="plutoComms.MSPPacket">
 <em class="property">class </em><code class="descclassname">plutoComms.</code><code class="descname">MSPPacket</code><span class="sig-paren">(</span><em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#plutoComms.MSPPacket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This is a class for MSP Packets</p>
+<p>This is a class for MSP Packets.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
-<dd>header: a list containing the header of the MSP Packet i.e. [36, 77] <br>
-direction: a dictionart to store the value mapped to in and out direction of MSGS <br>
-msg: a list to store the full message <br>
+<dd>header: a list containing the header of the MSP Packet i.e. [36, 77]<br>
+direction: a dictionart to store the value mapped to in and out direction of MSGS<br>
+msg: a list to store the full message<br>
 debug: a flag to enable prints in code for debugging</dd>
 </dl>
 <dl class="method">
@@ -284,9 +291,9 @@ This is to check the integrity of the packet.</p>
 <dd><p>This is a member function to returns MSP Packet of in direction for given message length, type of payload and data.</p>
 <dl class="docutils">
 <dt>Parameter:</dt>
-<dd>msgLen: length of message. <br>
-typeOfPayload: stores value assigned to that type of payload. <br>
-msgData: stores the data to be sent.</dd>
+<dd>msgLen: length of message<br>
+typeOfPayload: stores value assigned to that type of payload<br>
+msgData: stores the data to be sent</dd>
 </dl>
 </dd></dl>
 
@@ -296,9 +303,9 @@ msgData: stores the data to be sent.</dd>
 <dd><p>This is a member function to returns MSP Packet of in direction for given message length, type of payload and data.</p>
 <dl class="docutils">
 <dt>Parameter:</dt>
-<dd>msgLen: length of message. <br>
-typeOfPayload: stores value assigned to that type of payload. <br>
-msgData: stores the data to be sent.</dd>
+<dd>msgLen: length of message<br>
+typeOfPayload: stores value assigned to that type of payload<br>
+msgData: stores the data to be sent</dd>
 </dl>
 </dd></dl>
 
@@ -309,7 +316,10 @@ msgData: stores the data to be sent.</dd>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
